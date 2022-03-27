@@ -1,87 +1,62 @@
-# 汇总收集的项目
+## 项目仅供内部开发者使用
 
-将平时学习和收集到的项目进行汇总
+后端项目基于spring cloud alibaba微服务框架
 
-主要划分为以下几个模块
+### 开发规范
+```
+** 代码请遵循驼峰式命名法
 
-- algorithm: 算法相关
-  - [ ] 排序算法
-  - [x] 树
-  - [ ] 图
-  - [x] 栈
-  - [ ] 队列
-  - [ ] 链表
-- design-pattern: 设计模式
-  - 创建型
-    - [ ] 单例模式
-    - [ ] 工厂模式
-    - [ ] 抽象工厂模式
-    - [ ] 建造者模式
-    - [ ] 原型模式
-  - 结构型
-  - 行为型
-    - [x] 策略模式    
-- file-io: 文件相关
-  - file: io和文件上传
-  - image: java bufferedImage
-- java8: 学习java8的特性 
-  - [x] lambda
-  - [x] stream
-  - [x] optional
-  - [x] thread
-- jsoup: Java爬虫
-  - [x] 图片爬取
-  - [ ] 文本爬取
-- java-shutdown: 优雅停机的实现
-  - [x] spring-actuator实现
-  - [x] spring context关闭
-  - [x] shell脚本关闭
-  - [x] 调用SpringApplication.exit()方法
-- thread: 多线程学习
-- stock
-    - 防止库存超卖，从两个方面实现，分布式应用/单体应用
-- pinyin4j
-    - pinyin4j工具类的使用
-- blog-comment: 博客评论
-    - 两段式评论，将回复和评论都放在一张表中
-    - smart-doc: 生成文档
-    -
-- face-recognition: 人脸识别
-    - https://www.faceplusplus.com.cn/
-- interface-idempotence: 接口幂等性测试
-- luo-pan-time: 罗盘时钟
-- echarts-map: echarts整合
-- dataway: hasor 框架,一站式生成代码
-    - 官网：https://www.hasor.net/doc/
-- java-cv: opencv 集成到Java中
-- time-clock: 罗盘时钟
-- test-code: 测试模块，日常一些随手写的测试API 的代码存放的地方
-- email
-  - spring整合cron+email，实现定时邮件发送任务
-- excel
-  - 整合easy excel api实现对excel的操作
-  - 具体的easyexcel学习可以参考：[excel学习教程](https://gitee.com/zukxupu/excel-tools.git)
-- jasypt
-  - [x] 敏感数据加密
-  - [x] aop实现加解密
-- classloader：实现代码防止反编译
-  - https://mp.weixin.qq.com/s/2NboThd7TyaSPkHfEihENQ
-- redis-order-timeout: 使用redis实现订单超时处理
-  - 生成订单，30分钟未支付就进行取消订单
-- alipay: 整合支付宝支付
-  - 整合整个支付宝的请求到项目中，本次所使用的为沙箱环境
-- websocket: 整合websocket
-  - websocket: 建立长连接，可用于推送消息
-  - qrcode: 二维码扫描登录
-- validator: 参数校验集成
-- rabbitmq: 学习rabbitmq
-- minio: 学习minio
-- es: elastic search 学习
-- shiro: shiro 学习
-- security: spring security学习
-- ……
+** 公共方法请封装,并且加注释注解
 
-## 技术选型
+** 项目内所有方法均标注好注释,方便你我他
 
-没有特意进行技术选型，只有在学习的时候进行选择合适的技术栈，版本也没有特别关注 本参考只是为了做一个汇集  
-当作以后参考的选择
+** 尽量不写sql，都用mybatis-plus，难以实现的复杂sql，不要应用oracle特有的函数，需要mysql也能执行，sql编写必须实现预编译，防止sql注入
+
+** 先设计数据库表和字段，每个字段都需要详细的解释，上传到a-wscc-sql
+
+** 设计好表字段后，通过tool-center里的code-generator生成对应的增删改查代码，前端的会生成相应对象的vue文件
+
+** 确定业务逻辑后，写与前端商量接口参数和返回结构，把controller层方法先实现，定义好参数和模拟写好数据返回结构，能够快速生成swagger文档以便前后端开发同时进行
+
+```
+### 功能介绍
+
+
+### 目录结构描述
+
+## 启动说明
+
+
+### GIT管理规范（详细复杂版，以下操作在idea，webstorm中能轻易实现，其他git工具未知）
+```
+** 假设开发分支为origin/1.0-dev，则需要在本地以它为主分支创建一个分支wxy，新的分支推送的远程作为自己的远程分支origin/wxy
+
+** 任何自己的修改在自己分支进行，每个代码的提交需要描述清楚内容，尽量保证每次提交是某个完整的功能且能项目编译通过的
+
+** （最重要的）在push自己分支代码到远程分支之前，需要先rebase下1.0-dev主开发分支的代码，保证自己的分支是在最新代码的前提上修改的
+
+** 如果rebase后出现代码冲突就解决冲突，和冲突代码提交人员进行沟通，保留正确的代码
+
+** rebase成功后，push本地提交到远程分支，编译工具Terminal输入git stash 保留当前的更改但是未提交的内容
+
+** 切换到1.0-dev主分支，进行merge自己远程分支的操作，merge完成后push到远程1.0-dev分支
+
+** 这时就已经完成和主开发分支的代码合并，并且不会存在冲突，可以切回自己的分支进行开发之后的任务
+
+```
+
+### GIT管理规范（简单版，适用于访问git缓慢的网络环境，不能频繁的提交，每次提交是完整功能模块的）
+```
+** 假设开发分支为origin/1.0-dev，则需要在本地以它为远程分支创建一个本地分支1.0-dev
+
+** 任何自己的修改在本地分支进行，每个代码的提交需要描述清楚内容，尽量保证每次提交是某个完整的功能且能项目编译通过的
+
+** （最重要的）在push自己分支代码到远程分支之前，保证是能够编译运行的代码，功能上是有更新的，需要先rebase下origin/1.0-dev远程分支的代码，保证自己的分支是在最新代码的前提上修改的
+
+** 如果rebase后出现代码冲突就解决冲突，和冲突代码提交人员进行沟通，保留正确的代码
+
+** rebase成功后，push本地提交到远程分支，编译工具Terminal输入git push比较快
+
+** 这时就已经完成和主开发分支的代码合并，并且不会存在冲突，可以继续本地分支进行开发
+
+```
