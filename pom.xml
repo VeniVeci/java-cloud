@@ -11,6 +11,7 @@
     <modules>
         <module>cloud-auth</module>
         <module>cloud-component</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <name>java-cloud-platform</name>
@@ -85,6 +86,11 @@
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-auth</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-gateway</artifactId>
                 <version>${cloud-project.version}</version>
             </dependency>
 
