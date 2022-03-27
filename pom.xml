@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>cloud-auth</module>
         <module>cloud-component</module>
     </modules>
 
@@ -81,7 +82,11 @@
             </dependency>
 
             <!--子模块依赖-->
-
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-auth</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
