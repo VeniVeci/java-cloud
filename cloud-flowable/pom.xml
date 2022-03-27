@@ -9,13 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-component</artifactId>
-    <packaging>pom</packaging>
-    <description>系统组件模块</description>
-    <modules>
-        <module>cloud-common</module>
-        <module>cloud-component-knife4j</module>
-    </modules>
+    <artifactId>cloud-flowable</artifactId>
+    <description>flowable 模块</description>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

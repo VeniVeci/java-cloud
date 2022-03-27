@@ -3,22 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>java-cloud-platform</artifactId>
+        <artifactId>cloud-component</artifactId>
         <groupId>com.zukxu</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-component</artifactId>
-    <packaging>pom</packaging>
-    <description>系统组件模块</description>
-    <modules>
-        <module>cloud-common</module>
-        <module>cloud-component-knife4j</module>
-    </modules>
+    <artifactId>cloud-component-knife4j</artifactId>
+    <description>API 文档依赖</description>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <knife4j.version>3.0.3</knife4j.version>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
