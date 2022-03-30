@@ -26,7 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cloud-project.version>1.0.0</cloud-project.version>
         <maven.plugin.version>3.8.1</maven.plugin.version>
-        <jasypt.version>3.0.4</jasypt.version>
+        <jasypt.version>2.1.2</jasypt.version>
         <spring-boot-admin.version>2.6.3</spring-boot-admin.version>
         <spring-boot.version>2.6.5</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
@@ -34,6 +34,7 @@
         <!--其余模块依赖版本管理-->
         <hutool.version>5.7.22</hutool.version>
         <dynamic-ds.version>3.5.1</dynamic-ds.version>
+        <retrofit.version>2.2.21</retrofit.version>
     </properties>
 
     <!--以下依赖全部子模块都会引入-->
