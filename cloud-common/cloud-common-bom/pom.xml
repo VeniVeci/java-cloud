@@ -2,21 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>cloud-common</artifactId>
-        <groupId>com.zukxu</groupId>
-        <version>1.0.0</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.zukxu</groupId>
     <artifactId>cloud-common-bom</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
-    <description>通用模块</description>
+
+    <name>cloud-common-bom</name>
+    <description>cloud parent pom</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <cloud-project.version>1.0.0</cloud-project.version>
+        <cloud-project.version>${project.version}</cloud-project.version>
         <fast-json.version>1.2.80</fast-json.version>
         <spring-boot.version>2.6.5</spring-boot.version>
         <spring-oauth.version>2.6.3</spring-oauth.version>
@@ -30,52 +29,52 @@
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-auth</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-core</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-datasource</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-feign</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-knife4j</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-log</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-gateway</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-register</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-upms-api</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-flowable</artifactId>
-                <version>1.0.0</version>
+                <version>${cloud-project.version}</version>
             </dependency>
             <!--其余依赖-->
             <dependency>

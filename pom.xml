@@ -103,6 +103,8 @@
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-bom</artifactId>
                 <version>${cloud-project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

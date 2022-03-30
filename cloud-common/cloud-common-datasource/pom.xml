@@ -11,11 +11,7 @@
 
     <artifactId>cloud-common-datasource</artifactId>
     <description>通用数据源管理</description>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+    <packaging>jar</packaging>
     <dependencies>
         <!--动态数据源切换-->
         <dependency>

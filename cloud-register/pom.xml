@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-register</artifactId>
+    <packaging>jar</packaging>
     <description>注册管理模块</description>
 
     <properties>
