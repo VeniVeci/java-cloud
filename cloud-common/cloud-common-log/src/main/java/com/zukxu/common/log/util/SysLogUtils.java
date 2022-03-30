@@ -3,7 +3,7 @@ package com.zukxu.common.log.util;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.HttpUtil;
-import com.zukxu.admin.model.entity.SysLog;
+import com.zukxu.admin.api.model.entity.SysLog;
 import lombok.experimental.UtilityClass;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
