@@ -12,8 +12,9 @@ import lombok.Getter;
  */
 @Getter
 public enum RStatus {
-    OK(200,"成功"),
-    FAIL(500,"失败");
+    OK(200, "成功"),
+    FAIL(500, "失败"),
+    CAPTCHA_ERROR_(5001, "验证码错误"), BIZ_ERROR_(5002, "业务异常");
     private int code;
     private String msg;
 
