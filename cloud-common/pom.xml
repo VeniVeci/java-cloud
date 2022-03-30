@@ -15,6 +15,9 @@
     <modules>
         <module>cloud-common-bom</module>
         <module>cloud-common-core</module>
+        <module>cloud-common-datasource</module>
+        <module>cloud-common-feign</module>
+        <module>cloud-common-log</module>
         <module>cloud-common-knife4j</module>
     </modules>
     <properties>

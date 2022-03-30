@@ -33,7 +33,42 @@
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-core</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-datasource</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-feign</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-knife4j</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-log</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
                 <artifactId>cloud-gateway</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-register</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-upms-api</artifactId>
                 <version>1.0.0</version>
             </dependency>
             <!--其余依赖-->
