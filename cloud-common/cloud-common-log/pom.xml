@@ -11,10 +11,7 @@
 
     <artifactId>cloud-common-log</artifactId>
     <description>通用日志模块</description>
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.zukxu</groupId>
@@ -33,6 +30,11 @@
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

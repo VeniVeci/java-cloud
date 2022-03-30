@@ -22,6 +22,8 @@
         <knife4j.version>3.0.3</knife4j.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <log4j2.version>2.17.2</log4j2.version>
+        <excel.version>1.1.1</excel.version>
+        <sms.version>2.0.2</sms.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -58,6 +60,11 @@
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-mybatis</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
                 <artifactId>cloud-gateway</artifactId>
                 <version>${cloud-project.version}</version>
             </dependency>
@@ -88,6 +95,16 @@
                 <version>${knife4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-micro-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-annotations</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
@@ -101,6 +118,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- excel 导入导出 -->
+            <dependency>
+                <groupId>com.pig4cloud.excel</groupId>
+                <artifactId>excel-spring-boot-starter</artifactId>
+                <version>${excel.version}</version>
+            </dependency>
+            <!--  阿里云短信下发 -->
+            <dependency>
+                <groupId>io.springboot.sms</groupId>
+                <artifactId>aliyun-sms-spring-boot-starter</artifactId>
+                <version>${sms.version}</version>
             </dependency>
             <!--指定log4j版本-->
             <dependency>

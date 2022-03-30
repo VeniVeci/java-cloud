@@ -11,9 +11,31 @@
 
     <artifactId>cloud-upms-api</artifactId>
     <description>通用权限管理 api</description>
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+<dependencies>
+    <!--core 工具类-->
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-core</artifactId>
+    </dependency>
+    <!--feign 依赖-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <!--断路器依赖-->
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-feign</artifactId>
+    </dependency>
+    <!--mybatis 依赖-->
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-mybatis</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.pig4cloud.excel</groupId>
+        <artifactId>excel-spring-boot-starter</artifactId>
+    </dependency>
+</dependencies>
 
 </project>
