@@ -23,12 +23,9 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cloud-project.version>1.0.0</cloud-project.version>
-
         <maven.plugin.version>3.8.1</maven.plugin.version>
-        <fast-json.version>1.2.80</fast-json.version>
         <jasypt.version>3.0.4</jasypt.version>
         <spring-boot-admin.version>2.6.3</spring-boot-admin.version>
-
         <spring-boot.version>2.6.5</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
@@ -95,7 +92,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--子模块依赖全部从bom中加载-->
+            <!--子模块依赖全部从common-bom中加载-->
             <dependency>
                 <groupId>com.zukxu</groupId>
                 <artifactId>cloud-common-bom</artifactId>

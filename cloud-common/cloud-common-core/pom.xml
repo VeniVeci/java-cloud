@@ -3,20 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>java-cloud-platform</artifactId>
+        <artifactId>cloud-common</artifactId>
         <groupId>com.zukxu</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-common</artifactId>
-    <packaging>pom</packaging>
-    <description>公共聚合模块</description>
-    <modules>
-        <module>cloud-common-bom</module>
-        <module>cloud-common-core</module>
-        <module>cloud-common-knife4j</module>
-    </modules>
+    <artifactId>cloud-common-core</artifactId>
+    <description>公共工具核心依赖</description>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
