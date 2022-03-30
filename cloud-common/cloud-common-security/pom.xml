@@ -15,6 +15,11 @@
         <groupId>com.zukxu</groupId>
         <artifactId>cloud-common-core</artifactId>
     </dependency>
+    <!--安全模块-->
+    <dependency>
+        <groupId>org.springframework.security.oauth.boot</groupId>
+        <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+    </dependency>
     <dependency>
         <groupId>com.zukxu</groupId>
         <artifactId>cloud-upms-api</artifactId>
