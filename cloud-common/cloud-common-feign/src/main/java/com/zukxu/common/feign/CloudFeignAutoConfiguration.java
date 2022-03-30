@@ -3,6 +3,9 @@ package com.zukxu.common.feign;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.BlockExceptionHandler;
 import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser;
 import com.zukxu.common.feign.sentinel.SentinelAutoConfiguration;
+import com.zukxu.common.feign.sentinel.extend.CloudSentinelFeign;
+import com.zukxu.common.feign.sentinel.handler.CLoudUrlBlockHandler;
+import com.zukxu.common.feign.sentinel.parser.CloudHeaderRequestOriginParser;
 import feign.Feign;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,19 +31,19 @@ public class CloudFeignAutoConfiguration {
     @ConditionalOnMissingBean
     @ConditionalOnProperty(name = "feign.sentinel.enabled")
     public Feign.Builder feignSentinelBuilder() {
-        return PigSentinelFeign.builder();
+        return CloudSentinelFeign.builder();
     }
 
     @Bean
     @ConditionalOnMissingBean
     public BlockExceptionHandler blockExceptionHandler() {
-        return new PigUrlBlockHandler();
+        return new CLoudUrlBlockHandler();
     }
 
     @Bean
     @ConditionalOnMissingBean
     public RequestOriginParser requestOriginParser() {
-        return new PigHeaderRequestOriginParser();
+        return new CloudHeaderRequestOriginParser();
     }
 
 }
