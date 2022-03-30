@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-upms-biz</artifactId>
+    <description>通用权限管理业务</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

@@ -71,6 +71,11 @@
                 <artifactId>cloud-upms-api</artifactId>
                 <version>1.0.0</version>
             </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-flowable</artifactId>
+                <version>1.0.0</version>
+            </dependency>
             <!--其余依赖-->
             <dependency>
                 <groupId>com.alibaba</groupId>
