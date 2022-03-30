@@ -20,6 +20,7 @@
         <module>cloud-common-knife4j</module>
         <module>cloud-common-log</module>
         <module>cloud-common-mybatis</module>
+        <module>cloud-common-security</module>
     </modules>
 
 </project>

@@ -65,6 +65,11 @@
             </dependency>
             <dependency>
                 <groupId>com.zukxu</groupId>
+                <artifactId>cloud-common-security</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
                 <artifactId>cloud-gateway</artifactId>
                 <version>${cloud-project.version}</version>
             </dependency>
