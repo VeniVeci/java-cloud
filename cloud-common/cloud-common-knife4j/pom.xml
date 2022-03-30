@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>cloud-component</artifactId>
+        <artifactId>cloud-common</artifactId>
         <groupId>com.zukxu</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-component-knife4j</artifactId>
+    <artifactId>cloud-common-knife4j</artifactId>
     <description>API 文档依赖</description>
 
     <properties>

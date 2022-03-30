@@ -10,7 +10,7 @@
 
     <modules>
         <module>cloud-auth</module>
-        <module>cloud-component</module>
+        <module>cloud-common</module>
         <module>cloud-gateway</module>
         <module>cloud-flowable</module>
     </modules>
@@ -95,34 +95,12 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--注册中心客户端-->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-            </dependency>
-            <!--配置中心客户端-->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-            </dependency>
-
-            <!--子模块依赖-->
+            <!--子模块依赖全部从bom中加载-->
             <dependency>
                 <groupId>com.zukxu</groupId>
-                <artifactId>cloud-auth</artifactId>
+                <artifactId>cloud-common-bom</artifactId>
                 <version>${cloud-project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.zukxu</groupId>
-                <artifactId>cloud-gateway</artifactId>
-                <version>${cloud-project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zukxu</groupId>
-                <artifactId>cloud-flowable</artifactId>
-                <version>${cloud-project.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
     <build>
