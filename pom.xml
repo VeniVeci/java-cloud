@@ -12,7 +12,9 @@
         <module>cloud-auth</module>
         <module>cloud-common</module>
         <module>cloud-gateway</module>
-        <module>cloud-flowable</module>
+        <module>cloud-register</module>
+        <module>cloud-service</module>
+        <module>cloud-upms</module>
     </modules>
 
     <name>${project.artifactId}</name>
