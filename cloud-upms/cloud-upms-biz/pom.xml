@@ -11,10 +11,37 @@
 
     <artifactId>cloud-upms-biz</artifactId>
     <description>通用权限管理业务</description>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
+<dependencies>
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-upms-api</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-mybatis</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-knife4j</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.zukxu</groupId>
+        <artifactId>cloud-common-log</artifactId>
+    </dependency>
+    <!--注册中心客户端-->
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+    <!--配置中心客户端-->
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+    <!-- 阿里云短信下发 -->
+    <dependency>
+        <groupId>io.springboot.sms</groupId>
+        <artifactId>aliyun-sms-spring-boot-starter</artifactId>
+    </dependency>
+</dependencies>
 </project>

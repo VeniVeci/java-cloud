@@ -1,4 +1,4 @@
-package com.zukxu.admin.model.entity;
+package com.zukxu.admin.api.model.entity;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
