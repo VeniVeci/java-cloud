@@ -9,6 +9,7 @@ package com.zukxu.common.core.constant;
  * @since 2022-03-30 16:10
  */
 public interface SecurityConstants {
+
     /**
      * 验证码有效期,默认 60秒
      */
@@ -39,4 +40,13 @@ public interface SecurityConstants {
      * grant_type
      */
     String REFRESH_TOKEN = "refresh_token";
+    /**
+     * 请求头参数名称
+     */
+    String FROM = "from";
+    /**
+     * 是否内部请求
+     */
+    String FROM_Y = "Y";
+
 }

@@ -1,7 +1,7 @@
 package com.zukxu.common.log.aspect;
 
 import cn.hutool.extra.spring.SpringUtil;
-import com.zukxu.admin.model.entity.SysLog;
+import com.zukxu.admin.api.model.entity.SysLog;
 import com.zukxu.common.log.event.SysLogEvent;
 import com.zukxu.common.log.util.LogTypeEnum;
 import com.zukxu.common.log.util.SysLogUtils;

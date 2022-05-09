@@ -1,0 +1,6 @@
+com.zukxu.common.feign.CloudFeignAutoConfiguration=\
+  com.zukxu.admin.api.feign.RemoteDictService,\
+  com.zukxu.admin.api.feign.RemoteDeptService,\
+  com.zukxu.admin.api.feign.RemoteLogService,\
+  com.zukxu.admin.api.feign.RemoteTokenService,\
+  com.zukxu.admin.api.feign.RemoteUserService

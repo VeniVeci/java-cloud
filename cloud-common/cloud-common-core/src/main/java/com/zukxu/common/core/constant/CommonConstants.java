@@ -9,6 +9,7 @@ package com.zukxu.common.core.constant;
  * @since 2022-03-30 16:10
  */
 public interface CommonConstants {
+
     /**
      * 逻辑删除值 正常
      */
@@ -23,5 +24,15 @@ public interface CommonConstants {
      */
     Long MENU_TREE_ROOT_ID = -1L;
 
+    /**==============================================*/
+    /**
+     * 认证服务的 SERVICE NAME
+     */
+    String AUTH_SERVICE = "pig-auth";
+
+    /**
+     * UMPS模块
+     */
+    String UMPS_BIZ_SERVICE = "cloud-upms-biz";
 
 }
