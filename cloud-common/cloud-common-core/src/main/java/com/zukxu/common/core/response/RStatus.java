@@ -14,8 +14,11 @@ import lombok.Getter;
 public enum RStatus {
     OK(200, "成功"),
     FAIL(500, "失败"),
+    //#1000～1999 区间表示参数错误
+    //#2000～2999 区间表示用户错误
+    //#3000～3999 区间表示接口异常
     CAPTCHA_ERROR_(5001, "验证码错误"), BIZ_ERROR_(5002, "业务异常");
-    private int code;
+    private Integer code;
     private String msg;
 
     RStatus(int code, String msg) {
