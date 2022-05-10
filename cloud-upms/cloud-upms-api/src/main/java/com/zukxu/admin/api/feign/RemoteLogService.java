@@ -5,6 +5,7 @@ import com.zukxu.common.core.constant.CommonConstants;
 import com.zukxu.common.core.constant.SecurityConstants;
 import com.zukxu.common.core.response.R;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
  * @author xupu
  * @since 2022/3/30 22:48
  */
+@Component
 @FeignClient(contextId = "remoteLogService", value = CommonConstants.UMPS_BIZ_SERVICE)
 public interface RemoteLogService {
 

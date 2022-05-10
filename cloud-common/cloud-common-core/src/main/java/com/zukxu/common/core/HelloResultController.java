@@ -3,10 +3,10 @@ package com.zukxu.common.core;
 import com.zukxu.common.core.exception.BaseException;
 import com.zukxu.common.core.response.R;
 import com.zukxu.common.core.response.RResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/helloResult")
 @RResponse
+@Slf4j
 public class HelloResultController {
 
     private static final HashMap<String, Object> INFO;
@@ -76,6 +77,22 @@ public class HelloResultController {
     @GetMapping("helloMyError")
     public HashMap<String, Object> helloMyError() throws Exception {
         throw new BaseException();
+    }
+
+    @PostMapping("helloFile")
+    public File helloFile(@RequestBody Map<String, String> param) {
+        String uploadDir = param.get("uploadDir");
+        String fileName = param.get("fileName");
+        File dir = new File(uploadDir);
+        if(!dir.exists()) {
+            dir.mkdirs();//创建目录
+        }
+        File f = new File(uploadDir, fileName);
+        if(!f.exists()) {
+            log.info("文件不存在!!!");
+        }
+        log.info("文件存储路径:::{}", f.getAbsolutePath());
+        return f.isAbsolute() ? f : f.getAbsoluteFile();
     }
 
 }
