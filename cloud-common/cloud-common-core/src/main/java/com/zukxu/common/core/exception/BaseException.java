@@ -11,6 +11,7 @@ import com.zukxu.common.core.response.RStatus;
  * @since 2022-03-30 15:24
  */
 public class BaseException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -33,31 +34,31 @@ public class BaseException extends RuntimeException {
      */
     private String defaultMessage;
 
-    public BaseException(String module, Integer code, Object[] args, String defaultMessage) {
+    public BaseException(String module, Integer code, String defaultMessage, Object[] args) {
         this.module = module;
         this.code = code;
-        this.args = args;
         this.defaultMessage = defaultMessage;
+        this.args = args;
     }
 
     public BaseException(String module, Integer code, Object[] args) {
-        this(module, code, args, null);
+        this(module, code, null, args);
     }
 
     public BaseException(String module, String defaultMessage) {
-        this(module, null, null, defaultMessage);
+        this(module, null, defaultMessage, null);
     }
 
     public BaseException(Integer code, Object[] args) {
-        this(null, code, args, null);
+        this(null, code, null, args);
     }
 
     public BaseException(String defaultMessage) {
-        this(null, null, null, defaultMessage);
+        this(null, null, defaultMessage, null);
     }
 
     public BaseException(RStatus rStatus) {
-        this(null, rStatus.getCode(), null, rStatus.getMsg());
+        this(null, rStatus.getCode(), rStatus.getMsg(), null);
     }
 
     public BaseException() {}
@@ -82,4 +83,5 @@ public class BaseException extends RuntimeException {
     public String getDefaultMessage() {
         return defaultMessage;
     }
+
 }

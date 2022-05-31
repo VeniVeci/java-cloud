@@ -1,5 +1,6 @@
 package com.zukxu.common.core.utils;
 
+import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -22,11 +23,12 @@ import java.io.PrintWriter;
  * @since 2022-03-30 11:09
  */
 @Slf4j
-public class ServletUtils {
+public class ServletUtils extends ServletUtil {
+
     private ServletUtils() {}
 
     /**
-     * 获取当前系统的url
+     * 获取当前系统请求url
      */
     public static String getServerUrl() {
         HttpServletRequest request = getRequest();
@@ -56,35 +58,8 @@ public class ServletUtils {
         return getRequest().getSession();
     }
 
-    public static ServletRequestAttributes getRequestAttributes() {
+    private static ServletRequestAttributes getRequestAttributes() {
         RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
         return (ServletRequestAttributes) attributes;
-    }
-    /**===========================================================================*/
-    /**
-     * 返回json
-     *
-     * @param response HttpServletResponse
-     * @param result   结果对象
-     */
-    public void renderJson(HttpServletResponse response, Object result) {
-        renderJson(response, result, MediaType.APPLICATION_JSON_VALUE);
-    }
-
-    /**
-     * 返回json
-     *
-     * @param response    HttpServletResponse
-     * @param result      结果对象
-     * @param contentType contentType
-     */
-    public void renderJson(HttpServletResponse response, Object result, String contentType) {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType(contentType);
-        try (PrintWriter out = response.getWriter()) {
-            out.append(JSONUtil.toJsonStr(result));
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        }
     }
 }

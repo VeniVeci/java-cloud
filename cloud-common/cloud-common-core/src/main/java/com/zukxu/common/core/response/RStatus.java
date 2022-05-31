@@ -18,8 +18,8 @@ public enum RStatus {
     //#2000～2999 区间表示用户错误
     //#3000～3999 区间表示接口异常
     CAPTCHA_ERROR_(5001, "验证码错误"), BIZ_ERROR_(5002, "业务异常");
-    private Integer code;
-    private String msg;
+    private final Integer code;
+    private final String msg;
 
     RStatus(int code, String msg) {
         this.code = code;

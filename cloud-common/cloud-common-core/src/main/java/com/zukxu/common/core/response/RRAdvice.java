@@ -29,21 +29,13 @@ public class RRAdvice implements ResponseBodyAdvice<Object> {
      */
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(),
-                                                   RResponse.class) || returnType.hasMethodAnnotation(RResponse.class);
+        return AnnotatedElementUtils.hasAnnotation(returnType.getContainingClass(), RResponse.class)
+               || returnType.hasMethodAnnotation(RResponse.class);
     }
 
     /**
      * 响应值进行返回之前进行输出
      *
-     * @param body
-     * @param returnType
-     * @param selectedContentType
-     * @param selectedConverterType
-     * @param request
-     * @param response
-     *
-     * @return
      */
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
