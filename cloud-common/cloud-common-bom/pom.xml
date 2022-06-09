@@ -88,6 +88,17 @@
                 <version>${cloud-project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-admin</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zukxu</groupId>
+                <artifactId>cloud-admin-rest</artifactId>
+                <version>${cloud-project.version}</version>
+            </dependency>
+            <!--开发依赖-->
+            <dependency>
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
