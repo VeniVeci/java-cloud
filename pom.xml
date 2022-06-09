@@ -34,7 +34,7 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <!--其余模块依赖版本管理-->
-        <hutool.version>5.7.22</hutool.version>
+        <hutool.version>5.8.1</hutool.version>
         <dynamic-ds.version>3.5.1</dynamic-ds.version>
         <retrofit.version>2.2.21</retrofit.version>
     </properties>
