@@ -12,4 +12,14 @@ import com.zukxu.flowable.model.FlowModelInfo;
  * @since 2022/6/10 15:35:47
  */
 public interface IFlowModelInfoService extends IService<FlowModelInfo> {
+
+    /**
+     * 根据key获取模型信息
+     *
+     * @param modelKey modelKey
+     *
+     * @return FlowModelInfo
+     */
+    FlowModelInfo getModelInfoByModelKey(String modelKey);
+
 }

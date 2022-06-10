@@ -1,6 +1,7 @@
 package com.zukxu.flowable.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -8,10 +9,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.zukxu.common.core.exception.BusinessException;
 import com.zukxu.common.core.response.R;
+import com.zukxu.common.core.response.RStatus;
 import com.zukxu.common.security.service.LoginUser;
 import com.zukxu.flowable.json.convert.converter.CustomBpmnJsonConverter;
+import com.zukxu.flowable.mapper.FlowableProcessDefinitionMapper;
 import com.zukxu.flowable.model.FlowModelInfo;
+import com.zukxu.flowable.model.FlowableProcessDefinition;
 import com.zukxu.flowable.model.enums.FlowStatusEnums;
+import com.zukxu.flowable.model.vo.ModelInfoVo;
+import com.zukxu.flowable.handler.FlowableFactory;
 import com.zukxu.flowable.service.IFlowModelInfoService;
 import com.zukxu.flowable.service.IFlowableBpmnService;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +27,12 @@ import org.flowable.bpmn.converter.BpmnXMLConverter;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.editor.language.json.converter.BaseBpmnJsonConverter;
 import org.flowable.editor.language.json.converter.util.CollectionUtils;
+import org.flowable.engine.repository.Deployment;
 import org.flowable.ui.common.service.exception.BadRequestException;
 import org.flowable.ui.common.util.XmlUtil;
 import org.flowable.ui.modeler.domain.AbstractModel;
 import org.flowable.ui.modeler.domain.Model;
 import org.flowable.ui.modeler.service.ConverterContext;
-import org.flowable.ui.modeler.serviceapi.ModelService;
 import org.flowable.validation.ProcessValidator;
 import org.flowable.validation.ProcessValidatorFactory;
 import org.flowable.validation.ValidationError;
@@ -38,6 +44,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -50,21 +57,19 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class FlowableBpmnServiceImpl implements IFlowableBpmnService {
+public class FlowableBpmnServiceImpl extends FlowableFactory implements IFlowableBpmnService {
 
     //@formatter:off
-    private static final String XML_EXTENSION = ".xml";
-    private static final String BPMN_EXTENSION = ".bpmn";
-    private static final String BPMN20_XML_EXTENSION = ".bpmn20.xml";
     //flowable
-    final private ModelService modelService;
     final private ProcessValidatorFactory processValidatorFactory;
     final protected BpmnXMLConverter bpmnXMLConverter;
-    //custom
+    //custom util
     final protected ObjectMapper objectMapper;
     final protected CustomBpmnJsonConverter bpmnJsonConverter;
-
+    //custom service
     final protected IFlowModelInfoService flowModelInfoService;
+    //custom mapper
+    final private FlowableProcessDefinitionMapper flowableProcessDefinitionMapper;
     //@formatter:on
     @Override
     @SneakyThrows
@@ -124,29 +129,76 @@ public class FlowableBpmnServiceImpl implements IFlowableBpmnService {
     public R<String> publishBpmn(String modelId) {
         Model model = modelService.getModel(modelId);
         BpmnModel bpmnModel = modelService.getBpmnModel(model);
-        R<String> stringR = this.validationErrors(bpmnModel);
-        if(!stringR.isSuccess()) {
-            return stringR;
+        R<String> r = this.validationErrors(bpmnModel);
+        if(!r.isSuccess()) {
+            return r;
         }
-        LambdaQueryWrapper<ModelInfo> modelInfoLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        modelInfoLambdaQueryWrapper.eq(ModelInfo::getModelId, modelId);
-        ModelInfo modelInfo = modelInfoService.getOne(modelInfoLambdaQueryWrapper);
-        if(modelInfo != null) {
-            ReturnVo<String> statusReturnVo = ModelFormStatusEnum.checkActive(modelInfo.getStatus(), modelInfo.getExtendStatus());
-            if(statusReturnVo.isSuccess()) {
+        FlowModelInfo modelInfo = flowModelInfoService.getOne(new LambdaQueryWrapper<FlowModelInfo>().eq(FlowModelInfo::getModelId, modelId));
+        if(ObjectUtil.isNotNull(modelInfo)) {
+            //校验是否可用
+            r = FlowStatusEnums.checkActive(modelInfo.getStatus(), modelInfo.getExtendStatus());
+            if(r.isSuccess()) {
+                //部署
                 this.deployBpmn(modelInfo);
-                LambdaUpdateWrapper<ModelInfo> modelInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-                modelInfoLambdaUpdateWrapper.set(ModelInfo::getStatus, ModelFormStatusEnum.YFB.getStatus())
-                                            .set(ModelInfo::getExtendStatus, ModelFormStatusEnum.YFB.getStatus())
-                                            .eq(ModelInfo::getModelId, modelId);
-                modelInfoService.update(modelInfoLambdaUpdateWrapper);
+                LambdaUpdateWrapper<FlowModelInfo> modelInfoLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+                modelInfoLambdaUpdateWrapper.set(FlowModelInfo::getStatus, FlowStatusEnums.YFB.getStatus())
+                                            .set(FlowModelInfo::getExtendStatus, FlowStatusEnums.YFB.getStatus())
+                                            .eq(FlowModelInfo::getModelId, modelId);
+                flowModelInfoService.update(modelInfoLambdaUpdateWrapper);
             } else {
-                return statusReturnVo;
+                return r;
             }
         } else {
-            returnVo = new ReturnVo<>(ReturnCode.FAIL, "没有找到对应的模型，请确认!");
+            return r.setCode(RStatus.FAIL.getCode()).setMsg("没有找到对应的模型，请确认!");
         }
-        return returnVo;
+        return r;
+    }
+
+    @Override
+    public R<Deployment> deployBpmn(FlowModelInfo modelInfo) {
+        Model model = modelService.getModel(modelInfo.getModelId());
+        BpmnModel bpmnModel = modelService.getBpmnModel(model);
+        Deployment deploy = repositoryService.createDeployment()
+                                             .name(model.getName())
+                                             .key(model.getKey())
+                                             .category(modelInfo.getCategoryCode())
+                                             .tenantId(model.getTenantId())
+                                             .addBpmnModel(model.getKey() + BPMN_EXTENSION, bpmnModel)
+                                             .deploy();
+        flowableProcessDefinitionMapper.update(new FlowableProcessDefinition().setCategory(modelInfo.getCategoryCode()),
+                                               new LambdaQueryWrapper<FlowableProcessDefinition>()
+                                                       .eq(FlowableProcessDefinition::getDeploymentId, deploy.getId()));
+        return R.ok(deploy);
+    }
+
+    @Override
+    public R<String> stopBpmn(String modelId) {
+        LambdaUpdateWrapper<FlowModelInfo> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(FlowModelInfo::getModelId, modelId).set(FlowModelInfo::getStatus, FlowStatusEnums.TY.getStatus())
+               .set(FlowModelInfo::getExtendStatus, FlowStatusEnums.TY.getStatus());
+        boolean update = flowModelInfoService.update(wrapper);
+        return update ? R.ok() : R.fail("终止异常");
+    }
+
+    @Override
+    public ModelInfoVo loadBpmnXmlByModelId(String modelId) {
+        Model model = modelService.getModel(modelId);
+        byte[] bpmnXML = modelService.getBpmnXML(model);
+        String streamStr = new String(bpmnXML);
+        return new ModelInfoVo()
+                .setModelId(modelId)
+                .setModelName(model.getName())
+                .setModelKey(model.getKey())
+                .setFileName(model.getName())
+                .setModelXml(streamStr);
+    }
+
+    @Override
+    public ModelInfoVo loadBpmnXmlByModelKey(String modelKey) {
+        if(StrUtil.isNotBlank(modelKey)) {
+            Optional.ofNullable(flowModelInfoService.getModelInfoByModelKey(modelKey)).ifPresent(t -> this.loadBpmnXmlByModelId(t.getModelId()));
+        }
+        return null;
     }
 
     /** =============================================================== */

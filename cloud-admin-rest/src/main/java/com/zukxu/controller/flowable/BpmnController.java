@@ -3,6 +3,7 @@ package com.zukxu.controller.flowable;
 import com.zukxu.common.core.response.R;
 import com.zukxu.common.core.response.RResponse;
 import com.zukxu.controller.BaseController;
+import com.zukxu.flowable.model.vo.ActivityVo;
 import com.zukxu.flowable.model.vo.HighLightedNodeVo;
 import com.zukxu.flowable.model.vo.ModelInfoVo;
 import com.zukxu.flowable.service.IFlowProcessDiagramService;
@@ -69,13 +70,12 @@ public class BpmnController<T> extends BaseController<T> {
      * @return
      */
     @GetMapping("/stopBpmn/{modelId}")
-    public String stopBpmn(@PathVariable String modelId) {
-        String returnVo = flowableBpmnService.stopBpmn(modelId);
-        return returnVo;
+    public R<String> stopBpmn(@PathVariable String modelId) {
+        return flowableBpmnService.stopBpmn(modelId);
     }
 
     /**
-     * 获取
+     * 通过模型id获取模型信息
      *
      * @param modelId 模型id
      *
@@ -83,27 +83,19 @@ public class BpmnController<T> extends BaseController<T> {
      */
     @GetMapping("/getBpmnByModelId/{modelId}")
     public ModelInfoVo getBpmnByModelId(@PathVariable String modelId) {
-        ModelInfoVo > returnVo = new > (ReturnCode.SUCCESS, "获取数据成功！");
-        ModelInfoVo modelInfoVo = flowableBpmnService.loadBpmnXmlByModelId(modelId);
-        returnVo.setData(modelInfoVo);
-        return returnVo;
+        return flowableBpmnService.loadBpmnXmlByModelId(modelId);
     }
 
     /**
-     * 获取
+     * 通过模型Key获取模型信息
      *
      * @param modelKey 模型key
      *
      * @return
      */
     @GetMapping("/getBpmnByModelKey/{modelKey}")
-    public ModelInfoVo>
-
-    getBpmnByModelKey(@PathVariable String modelKey) {
-        ModelInfoVo > returnVo = new > (ReturnCode.SUCCESS, "获取数据成功！");
-        ModelInfoVo modelInfoVo = flowableBpmnService.loadBpmnXmlByModelKey(modelKey);
-        returnVo.setData(modelInfoVo);
-        return returnVo;
+    public ModelInfoVo getBpmnByModelKey(@PathVariable String modelKey) {
+        return flowableBpmnService.loadBpmnXmlByModelKey(modelKey);
     }
 
     /**
@@ -113,32 +105,22 @@ public class BpmnController<T> extends BaseController<T> {
      *
      * @return
      */
-    @GetMapping("/getHighLightedNodeVoByProcessInstanceId/{processInstanceId}")
-    public HighLightedNodeVo>
-
-    getHighLightedNodeVoByProcessInstanceId(@PathVariable String processInstanceId) {
-        HighLightedNodeVo > returnVo = new > (ReturnCode.SUCCESS, "OK");
-        HighLightedNodeVo highLightedNodeVo = flowProcessDiagramService.getHighLightedNodeVoByProcessInstanceId(processInstanceId);
-        returnVo.setData(highLightedNodeVo);
-        return returnVo;
+    @GetMapping("/getHighLightInfoByInstanceId/{processInstanceId}")
+    public HighLightedNodeVo getHighLightInfoByInstanceId(@PathVariable String processInstanceId) {
+        return flowProcessDiagramService.getHighLightInfoByInstanceId(processInstanceId);
     }
 
     /**
-     * 过流程实例id获取节点的信息
+     * 根据流程实例id获取节点的信息
      *
      * @param processInstanceId 流程实例id
      * @param activityId        节点id
      *
      * @return
      */
-    @GetMapping("/getOneActivityVoByProcessInstanceIdAndActivityId/{processInstanceId}/{activityId}")
-    public ActivityVo>
-
-    getOneActivityVoByProcessInstanceIdAndActivityId(@PathVariable String processInstanceId, @PathVariable String activityId) {
-        ActivityVo > returnVo = new > (ReturnCode.SUCCESS, "OK");
-        ActivityVo processActivityVo = flowProcessDiagramService.getOneActivityVoByProcessInstanceIdAndActivityId(processInstanceId, activityId);
-        returnVo.setData(processActivityVo);
-        return returnVo;
+    @GetMapping("/getActivityByProcessInstanceIdAndActivityId/{processInstanceId}/{activityId}")
+    public ActivityVo getActivityByProcessInstanceIdAndActivityId(@PathVariable String processInstanceId, @PathVariable String activityId) {
+        return flowProcessDiagramService.getActivityByProcessInstanceIdAndActivityId(processInstanceId, activityId);
     }
 
     /**
@@ -148,12 +130,9 @@ public class BpmnController<T> extends BaseController<T> {
      *
      * @return
      */
-    @GetMapping("/getProcessActivityVosByProcessInstanceId/{processInstanceId}")
-    public List getProcessActivityVosByProcessInstanceId(@PathVariable String processInstanceId) {
-        List > returnVo = new > (ReturnCode.SUCCESS, "OK");
-        List<ActivityVo> processActivityVos = flowProcessDiagramService.getProcessActivityVosByProcessInstanceId(processInstanceId);
-        returnVo.setData(processActivityVos);
-        return returnVo;
+    @GetMapping("/listActivitiesByProcessInstanceId/{processInstanceId}")
+    public List<ActivityVo> listActivitiesByProcessInstanceId(@PathVariable String processInstanceId) {
+        return flowProcessDiagramService.listActivitiesByProcessInstanceId(processInstanceId);
     }
 
 }
