@@ -1,18 +1,20 @@
 package com.zukxu.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zukxu.common.core.response.R;
 import com.zukxu.common.core.vo.CheckExistVo;
+import com.zukxu.common.security.service.LoginUser;
+import com.zukxu.flowable.constants.FlowConstant;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
  * <p>
- *
+ * 基础接口抽象类
  * </p>
  *
  * @author xupu
@@ -25,19 +27,28 @@ public abstract class BaseController<T> {
     protected static final String EXIST_MESSAGE = "不能重复！";
 
     /**
-     * 判断是否唯一
+     * 获取登录用户
+     *
+     * @return LoginUser
+     */
+    protected LoginUser getLoginUser() {
+        return null;
+    }
+
+    /**
+     * 判断是否唯一,是否存在
      *
      * @param checkExistVo 参数
      *
-     * @return
+     * @return boolean
      */
     protected R<Boolean> checkExist(IService<T> service, CheckExistVo checkExistVo) {
+        R.builder().build();
         R<Boolean> r = R.ok(true);
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         String camelToUnderline = StringUtils.camelToUnderline(checkExistVo.getField());
-        //TODO
         wrapper.eq(checkExistVo.getFieldValue(), camelToUnderline);
-        wrapper.eq("del_flag", FlowConstant.DEL_FLAG_1);
+        wrapper.eq(FlowConstant.DEL_FLAG_, FlowConstant.NUM_1);
         long count = service.count(wrapper);
         if(StringUtils.isNotBlank(checkExistVo.getId())) {
             T entity = service.getById(checkExistVo.getId());
@@ -45,17 +56,16 @@ public abstract class BaseController<T> {
                 Object fieldValue = FieldUtils.readField(entity, checkExistVo.getField(), true);
                 String oldValue = (String) fieldValue;
                 if(!oldValue.equals(checkExistVo.getFieldValue()) && count > 0) {
-                    r = new R<>(ReturnCode.SUCCESS, checkExistVo.getFieldName() + EXIST_MESSAGE, false);
+                    r.setMsg(checkExistVo.getFieldName() + EXIST_MESSAGE).setData(false);
                 }
             } catch(IllegalAccessException e) {
-                logger.error("没有相关的字段！字段为：" + checkExistVo.getField());
+                logger.error("没有相关的字段！字段为：{}", checkExistVo.getField());
             }
         } else {
             if(count > 0) {
-                r = new R<>(ReturnCode.SUCCESS, checkExistVo.getFieldName() + EXIST_MESSAGE, false);
+                r.setMsg(checkExistVo.getFieldName() + EXIST_MESSAGE).setData(false);
             }
         }
         return r;
     }
-
 }

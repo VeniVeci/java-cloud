@@ -45,8 +45,12 @@
             <version>${hutool.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-annotations</artifactId>
+            <groupId>com.zukxu</groupId>
+            <artifactId>cloud-common-knife4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zukxu</groupId>
+            <artifactId>cloud-common-mybatis</artifactId>
         </dependency>
     </dependencies>
 </project>

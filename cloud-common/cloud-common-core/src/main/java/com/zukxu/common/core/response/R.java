@@ -1,9 +1,12 @@
 package com.zukxu.common.core.response;
 
+import cn.hutool.core.util.ObjectUtil;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * <p>
@@ -14,11 +17,16 @@ import java.io.Serializable;
  * @since 2022-03-30 10:43
  */
 @Data
+@Builder
 @Accessors(chain = true)
 public class R<T> implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     private Integer code;
+
     private String msg;
+
     private T data;
 
     private R() {}
@@ -48,33 +56,16 @@ public class R<T> implements Serializable {
     }
 
     private static <T> R<T> genResult(RStatus status, T data) {
-        R<T> r = new R<>();
-        r.setCode(status.getCode());
-        r.setMsg(status.getMsg());
-        r.setData(data);
-        return r;
+        return genResult(status.getCode(), status.getMsg(), data);
     }
 
     private static <T> R<T> genResult(int code, String msg, T data) {
         R<T> r = new R<>();
-        r.setCode(code);
-        r.setData(data);
-        r.setMsg(msg);
-        return r;
+        return r.setCode(code).setMsg(msg).setData(data);
     }
 
-    public R<T> code(int code) {
-        this.setCode(code);
-        return this;
+    public boolean isSuccess() {
+        return ObjectUtil.isNotEmpty(code) && Objects.equals(RStatus.OK.getCode(), code);
     }
 
-    public R<T> msg(String msg) {
-        this.setMsg(msg);
-        return this;
-    }
-
-    public R<T> data(T data) {
-        this.setData(data);
-        return this;
-    }
 }

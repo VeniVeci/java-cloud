@@ -24,5 +24,9 @@
             <groupId>com.zukxu</groupId>
             <artifactId>cloud-common-mybatis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zukxu</groupId>
+            <artifactId>cloud-flowable</artifactId>
+        </dependency>
     </dependencies>
 </project>

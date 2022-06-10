@@ -12,7 +12,7 @@ import java.util.Collection;
  * </p>
  *
  * @author xupu
- * @since 2022/3/30$ 23:40$
+ * @since 2022/3/30 23:40:50
  */
 public class LoginUser extends User {
 
