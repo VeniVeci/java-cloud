@@ -30,8 +30,8 @@ import java.util.List;
 public class BpmnController<T> extends BaseController<T> {
 
     //@formatter:off
-    final private IFlowableBpmnService flowableBpmnService;
-    final private IFlowProcessDiagramService flowProcessDiagramService;
+    private final IFlowableBpmnService flowableBpmnService;
+    private final IFlowProcessDiagramService flowProcessDiagramService;
     //@formatter:on
 
     /**

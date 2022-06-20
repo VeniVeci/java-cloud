@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Accessors(chain = true)
 @TableName(value = "act_re_procdef")
-public class FlowableProcessDefinition implements Serializable {
+public class FlowableActReProcDef implements Serializable {
 
     /**
      * id

@@ -185,8 +185,8 @@ public class FlowModelInfo extends BaseEntity implements Serializable {
 
     /**
      * 流程中心是否显示 1 是 0 否
-     * {@link com.zukxu.flowable.constants.FlowConstant#NUM_1}
-     * {@link com.zukxu.flowable.constants.FlowConstant#NUM_0}
+     * {@link com.zukxu.flowable.constants.FlowConstants#NUM_1}
+     * {@link com.zukxu.flowable.constants.FlowConstants#NUM_0}
      */
     @TableField(value = "show_status")
     @ApiModelProperty(value = "流程中心是否显示 1 是 0 否")
@@ -196,7 +196,7 @@ public class FlowModelInfo extends BaseEntity implements Serializable {
      * 适用范围
      */
     @TableField(value = "applied_range")
-    @ApiModelProperty(value = " 适用范围 @see ModelAppliedRangeEnum")
+    @ApiModelProperty(value = "适用范围")
     private Integer appliedRange;
 
     @TableField(exist = false)
