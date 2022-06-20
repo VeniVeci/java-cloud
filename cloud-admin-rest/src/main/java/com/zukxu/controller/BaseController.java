@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zukxu.common.core.response.R;
 import com.zukxu.common.core.vo.CheckExistVo;
 import com.zukxu.common.security.service.LoginUser;
-import com.zukxu.flowable.constants.FlowConstant;
+import com.zukxu.flowable.constants.FlowConstants;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public abstract class BaseController<T> {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         String camelToUnderline = StringUtils.camelToUnderline(checkExistVo.getField());
         wrapper.eq(checkExistVo.getFieldValue(), camelToUnderline);
-        wrapper.eq(FlowConstant.DEL_FLAG_, FlowConstant.NUM_1);
+        wrapper.eq(FlowConstants.DEL_FLAG_, FlowConstants.NUM_1);
         long count = service.count(wrapper);
         if(StringUtils.isNotBlank(checkExistVo.getId())) {
             T entity = service.getById(checkExistVo.getId());
@@ -68,4 +68,5 @@ public abstract class BaseController<T> {
         }
         return r;
     }
+
 }
