@@ -1,0 +1,9 @@
+server:
+  port: 18080
+
+pagehelper:
+  helperDialect: mysql
+  params: count=countSql
+  reasonable: true
+  supportMethodsArguments: true
+
