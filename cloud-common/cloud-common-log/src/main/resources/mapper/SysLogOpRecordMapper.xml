@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zukxu.common.log.mapper.SysLogOpRecordMapper">
+  <resultMap id="BaseResultMap" type="com.zukxu.common.log.model.SysLogOpRecord">
+    <!--@mbg.generated-->
+    <!--@Table sys_log_op_record-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="op_user_id" jdbcType="VARCHAR" property="opUserId" />
+    <result column="op_user_no" jdbcType="VARCHAR" property="opUserNo" />
+    <result column="op_user_name" jdbcType="VARCHAR" property="opUserName" />
+    <result column="module" jdbcType="VARCHAR" property="module" />
+    <result column="op_req_type" jdbcType="VARCHAR" property="opReqType" />
+    <result column="op_req_content" jdbcType="VARCHAR" property="opReqContent" />
+    <result column="op_resp_content" jdbcType="VARCHAR" property="opRespContent" />
+    <result column="op_resp_ex" jdbcType="VARCHAR" property="opRespEx" />
+    <result column="bgn_time" jdbcType="TIMESTAMP" property="bgnTime" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="month" jdbcType="INTEGER" property="month" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="day" jdbcType="INTEGER" property="day" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, ip, op_user_id, op_user_no, op_user_name, `module`, op_req_type, op_req_content, 
+    op_resp_content, op_resp_ex, bgn_time, `year`, `month`, end_time, `day`
+  </sql>
+</mapper>

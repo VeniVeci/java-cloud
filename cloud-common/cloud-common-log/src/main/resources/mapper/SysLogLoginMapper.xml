@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zukxu.common.log.mapper.SysLogLoginMapper">
+  <resultMap id="BaseResultMap" type="com.zukxu.common.log.model.SysLogLogin">
+    <!--@mbg.generated-->
+    <!--@Table sys_log_login-->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="operation_id" jdbcType="VARCHAR" property="operationId" />
+    <result column="operation_account" jdbcType="VARCHAR" property="operationAccount" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="is_login" jdbcType="BOOLEAN" property="isLogin" />
+    <result column="operation_time" jdbcType="TIMESTAMP" property="operationTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, operation_id, operation_account, ip, is_login, operation_time
+  </sql>
+</mapper>
