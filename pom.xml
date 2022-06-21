@@ -16,7 +16,6 @@
         <module>cloud-service</module>
         <module>cloud-upms</module>
         <module>cloud-admin</module>
-        <module>cloud-admin-rest</module>
     </modules>
 
     <name>${project.artifactId}</name>

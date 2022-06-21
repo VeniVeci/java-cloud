@@ -18,7 +18,15 @@
     <dependencies>
         <dependency>
             <groupId>com.zukxu</groupId>
-            <artifactId>cloud-admin-rest</artifactId>
+            <artifactId>cloud-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zukxu</groupId>
+            <artifactId>cloud-common-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zukxu</groupId>
+            <artifactId>cloud-flowable</artifactId>
         </dependency>
     </dependencies>
 
