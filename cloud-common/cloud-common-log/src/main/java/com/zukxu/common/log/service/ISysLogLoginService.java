@@ -14,7 +14,7 @@ import java.util.List;
  * @author xupu
  * @since 2022/6/21 10:47:04
  */
-public interface SysLogLoginService extends IService<SysLogLogin> {
+public interface ISysLogLoginService extends IService<SysLogLogin> {
 
     /**
      * 查询列表

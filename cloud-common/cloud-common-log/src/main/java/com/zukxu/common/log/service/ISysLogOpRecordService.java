@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author xupu
  * @since 2022/6/21 10:47:03
  */
-public interface SysLogOpRecordService extends IService<SysLogOpRecord> {
+public interface ISysLogOpRecordService extends IService<SysLogOpRecord> {
 
 
 }
