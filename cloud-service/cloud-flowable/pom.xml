@@ -18,7 +18,7 @@
         <flowable.version>6.7.2</flowable.version>
     </properties>
     <dependencies>
-        <!-- flowable -->
+        <!--======================flowable start============================-->
         <dependency>
             <groupId>org.flowable</groupId>
             <artifactId>flowable-spring-boot-starter</artifactId>
@@ -96,6 +96,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--======================flowable end============================-->
         <dependency>
             <groupId>com.zukxu</groupId>
             <artifactId>cloud-common-security</artifactId>
@@ -104,6 +105,5 @@
             <groupId>com.zukxu</groupId>
             <artifactId>cloud-common-knife4j</artifactId>
         </dependency>
-
     </dependencies>
 </project>

@@ -20,10 +20,6 @@
         <groupId>org.springframework.security.oauth.boot</groupId>
         <artifactId>spring-security-oauth2-autoconfigure</artifactId>
     </dependency>
-    <dependency>
-        <groupId>com.zukxu</groupId>
-        <artifactId>cloud-upms-api</artifactId>
-    </dependency>
 </dependencies>
 
 </project>
