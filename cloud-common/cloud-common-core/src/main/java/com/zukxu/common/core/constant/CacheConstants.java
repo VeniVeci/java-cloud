@@ -13,17 +13,17 @@ public interface CacheConstants {
     /**
      * oauth 缓存前缀
      */
-    String PROJECT_OAUTH_ACCESS = "cloud_oauth:access:";
+    String MODULE_OAUTH_ACCESS = "cloud_oauth:access:";
 
     /**
      * oauth 缓存令牌前缀
      */
-    String PROJECT_OAUTH_TOKEN = "cloud_oauth:token:";
+    String MODULE_OAUTH_TOKEN = "cloud_oauth:token:";
 
     /**
      * oauth 客户端信息
      */
-    String CLIENT_DETAILS = "cloud_oauth:client:details";
+    String MODULE_OAUTH_CLIENT_DETAILS = "cloud_oauth:client:details";
 
     /**
      * 验证码前缀

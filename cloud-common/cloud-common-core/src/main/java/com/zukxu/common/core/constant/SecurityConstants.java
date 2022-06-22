@@ -40,13 +40,5 @@ public interface SecurityConstants {
      * grant_type
      */
     String REFRESH_TOKEN = "refresh_token";
-    /**
-     * 请求头参数名称
-     */
-    String FROM = "from";
-    /**
-     * 是否内部请求
-     */
-    String FROM_Y = "Y";
 
 }

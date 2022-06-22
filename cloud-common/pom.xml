@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <description>公共聚合模块</description>
     <modules>
-        <module>cloud-common-bom</module>
         <module>cloud-common-core</module>
         <module>cloud-common-datasource</module>
         <module>cloud-common-feign</module>

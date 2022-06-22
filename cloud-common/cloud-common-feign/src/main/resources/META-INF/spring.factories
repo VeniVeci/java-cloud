@@ -1,4 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.zukxu.common.feign.CloudFeignAutoConfiguration,\
-  com.zukxu.common.feign.sentinel.SentinelAutoConfiguration,\
-  com.zukxu.common.feign.sentinel.handler.GlobalExceptionHandler

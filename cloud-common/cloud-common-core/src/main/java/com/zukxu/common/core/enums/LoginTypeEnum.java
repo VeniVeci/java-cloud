@@ -38,7 +38,7 @@ public enum LoginTypeEnum {
     PWD("PWD", "账号密码登录"),
 
     /**
-     * 验证码登录
+     * 短信验证码登录
      */
     SMS("SMS", "短信登录");
 
@@ -50,6 +50,6 @@ public enum LoginTypeEnum {
     /**
      * 描述
      */
-    private final String description;
+    private final String msg;
 
 }

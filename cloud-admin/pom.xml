@@ -16,19 +16,6 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>com.zukxu</groupId>
-            <artifactId>cloud-common-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.zukxu</groupId>
-            <artifactId>cloud-common-mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.zukxu</groupId>
-            <artifactId>cloud-flowable</artifactId>
-        </dependency>
+
     </dependencies>
-
-
 </project>

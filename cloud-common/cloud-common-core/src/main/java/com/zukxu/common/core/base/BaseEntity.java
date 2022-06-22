@@ -1,6 +1,5 @@
 package com.zukxu.common.core.base;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -26,26 +25,26 @@ public class BaseEntity implements Serializable {
     /**
      * 创建者
      */
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(value = "create_by")
     private String createBy;
 
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(value = "create_time")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**
      * 更新者
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_by")
     private String updateBy;
 
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_time")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 

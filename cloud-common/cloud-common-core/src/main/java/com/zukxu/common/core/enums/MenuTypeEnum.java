@@ -57,6 +57,6 @@ public enum MenuTypeEnum {
 	/**
 	 * 描述
 	 */
-	private final String description;
+	private final String msg;
 
 }

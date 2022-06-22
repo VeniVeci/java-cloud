@@ -9,12 +9,13 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>cloud-admin</module>
         <module>cloud-auth</module>
+        <module>cloud-bom</module>
         <module>cloud-common</module>
         <module>cloud-gateway</module>
         <module>cloud-register</module>
         <module>cloud-service</module>
-        <module>cloud-admin</module>
     </modules>
 
     <name>${project.artifactId}</name>
@@ -27,42 +28,43 @@
         <cloud-project.version>1.0.0</cloud-project.version>
         <maven.plugin.version>3.8.1</maven.plugin.version>
         <jasypt.version>3.0.4</jasypt.version>
-        <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
+
         <spring-boot.version>2.6.5</spring-boot.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
+        <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
         <dynamic-ds.version>3.5.1</dynamic-ds.version>
-        <retrofit.version>2.2.21</retrofit.version>
+        <retrofit.version>2.3.5</retrofit.version>
     </properties>
 
     <!--以下依赖全部子模块都会引入-->
     <dependencies>
-        <!--监控-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--监控客户端-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>${spring-boot-admin.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <!--测试依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
         <!--配置文件处理器-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+        <!--bootstrap 启动器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <!--监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--测试依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <!--配置文件加解密-->
         <dependency>
@@ -96,16 +98,36 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--子模块依赖全部从common-bom中加载-->
+            <!--子模块依赖全部从cloud-bom中加载-->
             <dependency>
                 <groupId>com.zukxu</groupId>
-                <artifactId>cloud-common-bom</artifactId>
+                <artifactId>cloud-bom</artifactId>
                 <version>${cloud-project.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--仓库代理-->
+    <repositories>
+        <!--阿里云代理-->
+        <repository>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aliyun-plugin</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <finalName>${project.name}</finalName>
         <resources>
@@ -127,12 +149,6 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
-                    <configuration>
-                        <finalName>${project.build.finalName}</finalName>
-                        <layers>
-                            <enabled>true</enabled>
-                        </layers>
-                    </configuration>
                     <executions>
                         <execution>
                             <goals>
@@ -140,6 +156,16 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -155,6 +181,13 @@
                 <!-- 默认环境 -->
                 <activeByDefault>true</activeByDefault>
             </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <!-- 环境标识，需要与配置文件的名称相对应 -->
+                <profiles.active>test</profiles.active>
+            </properties>
         </profile>
         <profile>
             <id>prod</id>
