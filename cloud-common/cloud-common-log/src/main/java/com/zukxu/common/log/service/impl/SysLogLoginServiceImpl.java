@@ -8,7 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.zukxu.common.core.base.QueryEntity;
 import com.zukxu.common.log.mapper.SysLogLoginMapper;
 import com.zukxu.common.log.model.SysLogLogin;
-import com.zukxu.common.log.service.SysLogLoginService;
+import com.zukxu.common.log.service.ISysLogLoginService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @since 2022/6/21 10:47:
  */
 @Service
-public class SysLogLoginServiceImpl extends ServiceImpl<SysLogLoginMapper, SysLogLogin> implements SysLogLoginService {
+public class SysLogLoginServiceImpl extends ServiceImpl<SysLogLoginMapper, SysLogLogin> implements ISysLogLoginService {
 
     @Override
     public List<SysLogLogin> selectList(QueryEntity query) {

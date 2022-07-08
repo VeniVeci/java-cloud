@@ -4,6 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -29,6 +30,7 @@ public class R<T> implements Serializable {
 
     private T data;
 
+    @Tolerate
     private R() {}
 
     public static <T> R<T> ok() {
